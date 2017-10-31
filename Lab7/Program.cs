@@ -14,25 +14,42 @@ namespace Lab7
                      "Metroid", "Earth, America", "Lake, The Bottom of a", "Somewhere, America", "London, England", "Boston, Massachusetts", "Pointsmith, Massachusetts"};
         static void Main(string[] args)
         {
-            int input;
-            string user = UserInput();
+            do
+            {
 
+
+                int input;
+
+                string user = UserInput();
+
+                input = InputIntCheck(user);
+
+                Console.Write("\n\t\t\t\tPress enter to reach exit menu.\n\n\t\tPlease type 'Food' or 'Town' to find out more about them : ");
+
+                string secondInput = Console.ReadLine().ToLower();
+
+                int studentFavFood = 0;
+
+                studentFavFood = StudentInfo(input, ref secondInput);
+
+                Console.WriteLine(Continue());
+
+                
+
+            } while (true);
+
+
+        }
+
+        private static int InputIntCheck(string user)
+        {
+            int input;
             if (int.TryParse(user, out input))
             {
                 Console.WriteLine($"\t\t\tThe student you are asking about is {names[input - 1]}");
             }
 
-            Console.Write("\n\t\t\t\tPress enter to reach exit menu.\n\n\t\tPlease type 'Food' or 'Town' to find out more about them : ");
-            string secondInput = Console.ReadLine().ToLower();
-            int studentFavFood = 0;
-
-            studentFavFood = StudentInfo(input, ref secondInput);
-
-            Console.WriteLine(Continue());
-
-            UserInput();
-
-
+            return input;
         }
 
         private static int StudentInfo(int input, ref string secondInput)
